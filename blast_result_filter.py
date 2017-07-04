@@ -9,7 +9,7 @@ def blast_result_filter(filename,iden_value=0.7,cover_value=0.6):
     path_out='Coverage%.2f_Identity%.2f' %(cover_value,iden_value)
     if not os.path.exists(path_out):
         os.makedirs(path_out)
-    out=open(path_out+'\\'+filename.replace('.xml','_result.txt'),'w')
+    out=open(os.path.join(path_out,filename.replace('.xml','_result.txt')),'w')
     out.write('query_id	sbjct_id	query_start	query_end	sbjc_start	sbjct_end	query_seq	sbjct_seq	identities	query_seq_length	sbject_seq_length	align_length\tcoverage	score	frame\n')
     f_blast_records = NCBIXML.parse(open(filename))
     for f_blast_record in f_blast_records:
